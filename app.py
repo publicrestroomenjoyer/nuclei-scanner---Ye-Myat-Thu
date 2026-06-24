@@ -17,7 +17,10 @@ def scan():
     cmd = [
     "nuclei",
     "-u", target,
+
     "-t", "/root/nuclei-templates/http/misconfiguration/http-missing-security-headers.yaml",
+    "-t", "/root/nuclei-templates/http/exposures/configs/git-config.yaml",
+
     "-jsonl",
     "-o", output,
     "-c", "1",
