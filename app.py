@@ -22,9 +22,11 @@ def scan():
     "-tags", "tech",
     "-c", "1",
     "-rl", "1",
+    "-timeout", "5",
+    "-retries", "0",
     "-silent",
     "-duc"
-]
+    ]
 
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
