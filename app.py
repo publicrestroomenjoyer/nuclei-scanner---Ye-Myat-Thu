@@ -20,6 +20,7 @@ def scan():
 
     "-t", "/root/nuclei-templates/http/misconfiguration/http-missing-security-headers.yaml",
     "-t", "/root/nuclei-templates/http/exposures/configs/git-config.yaml",
+    "-t", "/root/nuclei-templates/http/technologies/tech-detect.yaml",
 
     "-jsonl",
     "-o", output,
