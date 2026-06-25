@@ -46,6 +46,11 @@
         <pre>{{ stderr }}</pre>
     {% endif %}
 {% endif %}
+    {% if findings %}
+  <a href="/download?file={{ output_file }}" class="btn-download">
+    ⬇ Download JSONL Results
+  </a>
+{% endif %}
 
 </body>
 </html>
