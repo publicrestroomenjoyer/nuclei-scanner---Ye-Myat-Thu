@@ -42,11 +42,12 @@ def scan():
                     findings.append(json.loads(line))
 
     return render_template(
-        "index.html",
-        target=target,
-        findings=findings,
-        stderr=r.stderr
-    )
+    "index.html",
+    target=target,
+    findings=findings,
+    stderr=r.stderr,
+    output_file=os.path.basename(output), 
+)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
