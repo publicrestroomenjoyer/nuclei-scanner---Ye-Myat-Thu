@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_file, abort
 import subprocess, os, time, json
 
 app = Flask(__name__)
@@ -51,3 +51,13 @@ def scan():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+    
+@app.route("/download")
+def download():
+    filename = request.args.get("file", "")
+    # Sanitize: only allow files inside the results/ directory
+    safe_path = os.path.realpath(os.path.join("results", os.path.basename(filename)))
+    results_dir = os.path.realpath("results")
+    if not safe_path.startswith(results_dir) or not os.path.exists(safe_path):
+        abort(404)
+    return send_file(safe_path, as_attachment=True, download_name=os.path.basename(safe_path))
