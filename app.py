@@ -45,7 +45,7 @@ def scan():
         output_file=os.path.basename(output),
     )
 
-@app.route("/download")          # ← must be BEFORE app.run()
+@app.route("/download")
 def download():
     filename = request.args.get("file", "")
     safe_path = os.path.realpath(os.path.join("results", os.path.basename(filename)))
@@ -54,6 +54,6 @@ def download():
         abort(404)
     return send_file(safe_path, as_attachment=True, download_name=os.path.basename(safe_path))
 
-if __name__ == "__main__":       # ← app.run() always last
+if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
